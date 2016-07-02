@@ -1,0 +1,118 @@
+#alonegrid-search-box{
+	display: inline-block;
+	width: 30%;
+	margin: 10px;
+	padding: 5px;
+	max-width: 150px;
+	font-size: 100%;
+	background-color: transparent;
+	border: solid 1px #999;
+	border-width: 0 0 1px 0;
+	float: right;
+}
+#alonegrid-search-box:focus{
+	border: solid 1px #b8282f;
+	border-width: 0 0 1px 0;
+}
+
+#alonegrid-cluster-num-changer{
+	display: inline-block;
+	margin: 10px;
+	padding: 5px;
+	background-color: rgba(0, 0, 0, 0.03);
+	border: none;
+	float: right;
+}
+
+#alonegrid-main-table{
+	margin: 20px 0;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#alonegrid-main-table tr{
+	border-bottom: 1px solid #ccc;
+}
+
+#alonegrid-main-table > thead > tr{
+	border-bottom: 3px solid #ddd;
+}
+
+#alonegrid-main-table > tbody > tr:nth-child(2n){
+	background-color: #eee;
+}
+
+#alonegrid-main-table th,
+#alonegrid-main-table td{
+	text-align: left;
+	padding: 3px;
+}
+
+#alonegrid-page-buttons{
+	display: inline-flex;
+}
+
+#alonegrid-first-page,
+#alonegrid-last-page,
+#alonegrid-next-page,
+#alonegrid-prev-page,
+#alonegrid-page-buttons > button{
+	display: inline-block;
+	margin: 0 -0.5px;
+	padding: 0;
+	width: 50px;
+	height: 30px;
+	font-size: 100%;
+	color: #222;
+	border: none;
+	background-color: #eee;
+	cursor: pointer;
+}
+
+#alonegrid-first-page:hover,
+#alonegrid-last-page:hover,
+#alonegrid-next-page:hover,
+#alonegrid-prev-page:hover,
+#alonegrid-page-buttons > button:hover{
+	color: #eee;
+	background-color: #b8282f;
+}
+
+#alonegrid-first-page:active,
+#alonegrid-last-page:active,
+#alonegrid-next-page:active,
+#alonegrid-prev-page:active,
+#alonegrid-page-buttons > button:active{
+	color: #eee;
+	background-color: #d7464d;
+}
+
+.alonegrid-disabled-page-button{
+	display: none !important;
+}
+
+.alonegrid-disabled-button{
+	opacity: 0.3;
+	pointer-events: none;
+}
+
+.alonegrid-now-page-button{
+	color: #eee !important;
+	background-color: #b8282f !important;
+	pointer-events: none;
+}
+
+.alonegrid-sortable-th:hover{
+	background-color: #eee;
+	cursor: pointer;
+}
+
+.alonegrid-asc-th:after{
+	content: "▲";
+	font-size: 70%;
+}
+
+.alonegrid-desc-th:after{
+	content: "▼";
+	font-size: 70%;
+}

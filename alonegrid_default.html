@@ -1,0 +1,85 @@
+<script src="AloneGrid.js"></script>
+<link rel="stylesheet" href="./alonegrid_default.css">
+
+<input type="text" id="alonegrid-search-box" placeholder="🔍">
+<select id="alonegrid-cluster-num-changer">
+	<option data-cluster-num="1">1</option>
+	<option data-cluster-num="2">2</option>
+	<option data-cluster-num="10">10</option>
+	<option data-cluster-num="Infinity">all</option>
+</select>
+<table id="alonegrid-main-table"></table>
+<button id="alonegrid-first-page">«</button>
+<button id="alonegrid-prev-page"><</button>
+<div id="alonegrid-page-buttons">
+	<button></button>
+	<button></button>
+	<button></button>
+	<button></button>
+	<button></button>
+</div>
+<button id="alonegrid-next-page">></button>
+<button id="alonegrid-last-page">»</button>
+
+<script>
+	 var grid_data = [
+		 {
+			 data1: "hoge",
+			 data2: "fuga"
+		 },
+		 {
+			 data1: "hogehoge",
+			 data2: "fugafuga"
+		 },
+		 {
+			 data1: "hogehogehoge",
+			 data2: "fugafugafuga"
+		 }
+	 ];
+	 
+	alone_grid = new AloneGrid({
+		selectors: {
+			main_table: "#alonegrid-main-table",
+			search_box: "#alonegrid-search-box",
+			cluster_num_changer: "#alonegrid-cluster-num-changer",
+			page_buttons: "#alonegrid-page-buttons",
+			next_page: "#alonegrid-next-page",
+			prev_page: "#alonegrid-prev-page",
+			first_page: "#alonegrid-first-page",
+			last_page: "#alonegrid-last-page",
+			now_page_button: ".alonegrid-now-page-button",
+			disabled_page_button: ".alonegrid-disabled-page-button",
+			asc_th: ".alonegrid-asc-th",
+			desc_th: ".alonegrid-desc-th",
+			sortable_th: ".alonegrid-sortable-th"
+		},
+		header: [
+			{
+				property_name: "data1",
+				name: "DATA1hogehoge",
+				sortable: true,
+				sort_key: "data1"
+			},
+			{
+				property_name: "data2",
+				name: "DATA2fugafuga",
+				sortable: true,
+				sort_key: "data2"
+			},
+			{
+				customDom: function(row){
+					var a = document.createElement("a");
+					a.href = "http://" + row.data1 + ".com";
+					a.innerText = row.data2;
+					return a;
+				},
+				name: "link example",
+				sortable: false,
+				sort_key: ""
+			},
+		],
+		data: grid_data,
+		cluster_num: parseInt(document.querySelector("#alonegrid-cluster-num-changer > *").dataset.clusterNum)
+	});
+	alone_grid.draw();
+</script>

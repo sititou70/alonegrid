@@ -1,0 +1,12 @@
+{
+  "name": "AloneGrid",
+  "homepage": "https://github.com/sititou70/AloneGrid",
+  "authors": [
+    "@sititou70"
+  ],
+  "description": "web table utility",
+  "main": "AloneGrid.js",
+  "license": "MIT",
+  "ignore": [
+  ]
+}
