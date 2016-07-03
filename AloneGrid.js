@@ -1,4 +1,4 @@
-	//main object
+//main object
 var AloneGrid = function(setting){
 	this.data = setting.data;
 	this.header = setting.header;
@@ -82,30 +82,30 @@ AloneGrid.prototype.setEventHandler = function(){
 	}).bind(this));
 };
 AloneGrid.prototype.setPageButtons = function(){
-	var page_length = Math.ceil(this.filterData(this.data).length / this.cluster_num);
+	var page_num = Math.ceil(this.filterData(this.data).length / this.cluster_num);
 	var buttons = this.$(this.selectors.page_buttons + " > *");
 	
 	if(typeof(buttons) != "undefined"){
 		//set page buttons
 		var page_buttons_num = buttons.length;
 		var page_index;
-		if(page_length <= page_buttons_num){
+		if(page_num <= page_buttons_num){
 			page_index = 0;
 		}else{
 			var expand_num = parseInt((page_buttons_num - 1) / 2);
-			if(this.now_page - expand_num >= 0 && this.now_page + expand_num <= page_length - 1){
+			if(this.now_page - expand_num >= 0 && this.now_page + expand_num <= page_num - 1){
 				page_index = this.now_page - expand_num;
 			}else{
 				if(this.now_page - expand_num < 0){
 					page_index = 0;
 				}else{
-					page_index = this.now_page - expand_num - (expand_num - (page_length - 1 - this.now_page));
+					page_index = this.now_page - expand_num - (expand_num - (page_num - 1 - this.now_page));
 				}
 			}
 		}
 		
 		for(var i = 0; i < buttons.length; i++){
-			if(page_index <= page_length){
+			if(page_index < page_num){
 				buttons[i].disabled = false;
 				buttons[i].innerText = page_index + 1;
 				buttons[i].dataset.page = page_index;
