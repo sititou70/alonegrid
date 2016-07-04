@@ -220,10 +220,10 @@ AloneGrid.prototype.drawData = function(){
 		var tr = document.createElement("tr");
 		for(var j = 0; j < this.header.length; j++){
 			var td = document.createElement("td");
-			if(typeof(this.header[j].customDom) == "function"){
-				td.appendChild(this.header[j].customDom(data[start_index + i]));
+			if(typeof(this.header[j].content) == "function"){
+				td.appendChild(this.header[j].content(data[start_index + i]));
 			}else{
-				td.innerText = data[start_index + i][this.header[j].property_name];
+				td.innerText = data[start_index + i][this.header[j].content];
 			}
 			tr.appendChild(td);
 		}
