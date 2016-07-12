@@ -13,6 +13,10 @@ var AloneGrid = function(setting){
 AloneGrid.prototype.$ = function(query){
 	return document.querySelectorAll(query);
 };
+AloneGrid.prototype.setText = function(dom, text){
+	dom.textContent = text;
+	dom.innerText = text;
+};
 AloneGrid.prototype.setEventHandler = function(){
 	var search_box = this.$(this.selectors.search_box)[0];
 	if(typeof(search_box) != "undefined")search_box.addEventListener("keyup", (function(){
@@ -107,7 +111,7 @@ AloneGrid.prototype.setPageButtons = function(){
 		for(var i = 0; i < buttons.length; i++){
 			if(page_index < page_num){
 				buttons[i].disabled = false;
-				buttons[i].innerText = page_index + 1;
+				this.setText(buttons[i], page_index + 1);
 				buttons[i].dataset.page = page_index;
 				buttons[i].classList.remove(this.selectors.disabled_page_button.replace(".", ""));
 				if(page_index == this.now_page){
@@ -119,7 +123,7 @@ AloneGrid.prototype.setPageButtons = function(){
 				page_index++;
 			}else{
 				buttons[i].disabled = true;
-				buttons[i].innerText = "";
+				this.setText(buttons[i], "");
 				buttons[i].dataset.page = -1;
 				buttons[i].classList.remove(this.selectors.now_page_button.replace(".", ""));
 				buttons[i].classList.add(this.selectors.disabled_page_button.replace(".", ""));
@@ -189,7 +193,7 @@ AloneGrid.prototype.drawHeader = function(){
 	this.header.forEach((function(obj){
 		var th = document.createElement("th");
 		if(obj.sortable)th.classList.add(this.selectors.sortable_th.replace(".", ""));
-		th.innerText = obj.name;
+		this.setText(th, obj.name);
 		tr.appendChild(th);
 	}).bind(this));
 	thead.appendChild(tr);
@@ -223,7 +227,7 @@ AloneGrid.prototype.drawData = function(){
 			if(typeof(this.header[j].content) == "function"){
 				td.appendChild(this.header[j].content(data[start_index + i]));
 			}else{
-				td.innerText = data[start_index + i][this.header[j].content];
+				this.setText(td, data[start_index + i][this.header[j].content]);
 			}
 			tr.appendChild(td);
 		}
