@@ -5,6 +5,7 @@ var AloneGrid = function(setting){
 	this.selectors = setting.selectors;
 	this.now_page = 0;
 	this.cluster_num = setting.cluster_num;
+	this.search_case_sensitive = this.search_case_sensitive;
 	this.drawHeader();
 	this.setEventHandler();
 };
@@ -181,7 +182,11 @@ AloneGrid.prototype.filterData = function(data){
 		Object.keys(obj).forEach(function(key) {
 			toString += this[key];
 		}, obj);
-		if(toString.indexOf(query) != -1)new_data.push(obj);
+		if(this.search_case_sensitive){
+			if(toString.toLowerCase().indexOf(query.toLowerCase()) != -1)new_data.push(obj);
+		}else{
+			if(toString.indexOf(query) != -1)new_data.push(obj);
+		}
 	}).bind(this));
 	
 	return new_data;
