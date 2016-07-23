@@ -5,7 +5,7 @@ var AloneGrid = function(setting){
 	this.selectors = setting.selectors;
 	this.now_page = 0;
 	this.cluster_num = setting.cluster_num;
-	this.search_case_sensitive = this.search_case_sensitive;
+	this.search_case_sensitive = setting.search_case_sensitive;
 	this.drawHeader();
 	this.setEventHandler();
 };
