@@ -172,9 +172,9 @@ AloneGrid.prototype.setPageButtons = function(){
 };
 AloneGrid.prototype.filterData = function(data){
 	var search_box = this.$(this.selectors.search_box)[0];
-	if(typeof(search_box) == "undefined")return this.data;
+	if(typeof(search_box) == "undefined")return data;
 	var query = search_box.value;
-	if(query === "")return this.data;
+	if(query === "")return data;
 	
 	var new_data = [];
 	data.forEach((function(obj){
