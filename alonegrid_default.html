@@ -55,19 +55,19 @@
 		},
 		header: [
 			{
-				property_name: "data1",
+				content: "data1",
 				name: "DATA1hogehoge",
 				sortable: true,
 				sort_key: "data1"
 			},
 			{
-				property_name: "data2",
+				content: "data2",
 				name: "DATA2fugafuga",
 				sortable: true,
 				sort_key: "data2"
 			},
 			{
-				customDom: function(row){
+				content: function(row){
 					var a = document.createElement("a");
 					a.href = "http://" + row.data1 + ".com";
 					a.innerText = row.data2;
@@ -79,7 +79,8 @@
 			},
 		],
 		data: grid_data,
-		cluster_num: parseInt(document.querySelector("#alonegrid-cluster-num-changer > *").dataset.clusterNum)
+		cluster_num: parseInt(document.querySelector("#alonegrid-cluster-num-changer > *").dataset.clusterNum),
+		search_case_sensitive: true
 	});
 	alone_grid.draw();
 </script>
