@@ -173,20 +173,29 @@ AloneGrid.prototype.setPageButtons = function(){
 AloneGrid.prototype.filterData = function(data){
 	var search_box = this.$(this.selectors.search_box)[0];
 	if(typeof(search_box) == "undefined")return data;
-	var query = search_box.value;
-	if(query === "")return data;
+	var querys = search_box.value.split(/[ 　]/).filter(str => str !== "");
+	if(querys.length === 0)return data;
 	
-	var new_data = [];
-	data.forEach((function(obj){
-		var toString = "";
-		Object.keys(obj).forEach(function(key) {
-			toString += this[key];
-		}, obj);
-		if(this.search_case_sensitive){
-			if(toString.toLowerCase().indexOf(query.toLowerCase()) != -1)new_data.push(obj);
-		}else{
-			if(toString.indexOf(query) != -1)new_data.push(obj);
-		}
+	var run_once_filter = function(data, query){
+		var new_data = [];
+		
+		data.forEach((function(obj){
+			var toString = "";
+			Object.keys(obj).forEach(function(key) {
+				toString += this[key];
+			}, obj);
+			if(this.search_case_sensitive){
+				if(toString.toLowerCase().indexOf(query.toLowerCase()) != -1)new_data.push(obj);
+			}else{
+				if(toString.indexOf(query) != -1)new_data.push(obj);
+			}
+		}).bind(this));
+		return new_data;
+	};
+	
+	var new_data = data;
+	querys.forEach((function(query){
+		new_data = run_once_filter(new_data, query);
 	}).bind(this));
 	
 	return new_data;
